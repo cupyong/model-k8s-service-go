@@ -1,0 +1,54 @@
+{
+  "name": "model",
+  "properties": {
+    "repository": "git@gitlab.dm-ai.cn:smart-city/model/model-deployment.git"
+  },
+  "services": [
+    {
+      "name": "model-k8s-service-go",
+      "description": "model-k8s-service-go",
+      "properties": {
+        "group": "smart-city",
+        "repository": "git@gitlab.dm-ai.cn:smart-city/model/model-k8s-service-go.git"
+      },
+      "port": 80,
+      "domain-names": [
+        {
+          "dev": "model-k8s-service-go.dev.dm-ai.com",
+          "stage": "model-k8s-service-go.stage.dm-ai.com",
+          "partner": "model-k8s-service-go.partner.dm-ai.com",
+          "prd": "model-k8s-service-go.dm-ai.com"
+        }
+      ],
+      "versions": {
+        "${CURRENT_VERSION}": {
+          "replicas": {
+            "dev": "1",
+            "stage": "1",
+            "partner": "1",
+            "prd": "1"
+          },
+          "weight": 100
+        }
+      },
+      "requirements": {
+        "cpu": 1,
+        "memory": 2,
+        "env": {
+          "PROFILE": {
+            "dev": "dev",
+            "stage": "stage",
+            "partner": "partner",
+            "prd": "prd"
+          },
+          "NACOS_IP_PORT": {
+            "dev": "http://nacos-model-headless:8848",
+            "stage": "http://nacos-model-headless:8848",
+            "partner": "http://nacos-model-headless:8848",
+            "prd": "http://nacos-model-headless:8848"
+          }
+        }
+      }
+    }
+  ]
+}

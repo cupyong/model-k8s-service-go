@@ -1,0 +1,10 @@
+name: k8s-service
+env: dev
+app_port: 80
+namespace: aog-dev
+master: 10.12.16.40
+csi_namespace: k8s-csi-s3
+csi_secret: csi-s3-secret
+csi_driver: ru.yandex.s3.csi
+capacity: 10Gi
+k8s_url: https://10.12.16.40:6443

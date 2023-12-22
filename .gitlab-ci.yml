@@ -1,0 +1,4 @@
+include:
+  - project: 'smart-city/model/model-deployment'
+    ref: dev
+    file: '.gitlab-ci.yml'
